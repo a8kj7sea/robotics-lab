@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming for Beginners</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Raleway:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheet/programming.css">
+    <link rel="stylesheet" href="../stylesheet/footer.css">
+    <link rel="icon" href="../asset/icon.jpg" type="image/x-icon">
+    </style>
+</head>
+
+<body>
+    <canvas id="matrix"></canvas>
+
+    <header>
+        Programming for Beginners
+    </header>
+
+    <div class="section">
+        <h1>Welcome to the World of Coding</h1>
+        <p>Start your journey into the exciting world of programming! Whether you're aiming to build websites, develop
+            games, or create mobile applications, this guide will provide you with the foundational knowledge to get
+            started.</p>
+
+        <div class="content-container">
+            <div class="card">
+                <h3>What is Programming?</h3>
+                <p>Programming is the process of writing instructions for computers to perform specific tasks. It
+                    involves logic, problem-solving, and creativity to build functional systems and applications.</p>
+            </div>
+            <div class="card">
+                <h3>Getting Started</h3>
+                <p>Begin with a simple language like Python or JavaScript. These languages are beginner-friendly and
+                    widely used in various fields such as web development, data analysis, and automation.</p>
+            </div>
+            <div class="card">
+                <h3>Practice Makes Perfect</h3>
+                <p>Learning to program requires consistent practice. Use platforms like Codecademy, freeCodeCamp, or
+                    LeetCode to solve coding challenges and build projects.</p>
+            </div>
+            <div class="card">
+                <h3>Resources</h3>
+                <p>Books like "Automate the Boring Stuff with Python" and websites like Stack Overflow can be invaluable
+                    for beginners. Explore tutorials and courses tailored to your learning style.</p>
+            </div>
+            <div class="card">
+                <h3>Common Programming Languages</h3>
+                <p>Explore languages like C++, Java, Python, and JavaScript. Each serves a unique purpose and offers a
+                    range of applications, from game development to AI.</p>
+            </div>
+            <div class="card">
+                <h3>Basic Coding Exercises</h3>
+                <p>Start with simple exercises like printing "Hello World," creating loops, or building basic functions
+                    to reinforce core concepts.</p>
+            </div>
+            <div class="card">
+                <h3>Additional Resources</h3>
+                <p>Check out W3Schools, GeeksforGeeks, and YouTube channels like Programming with Mosh for diverse
+                    tutorials and examples.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../home.html" class="btn-footer">Home</a>
+                <a href="./challenges.html" class="btn-footer">Challenges</a>
+                <a href="./club.html" class="btn-footer">Clubs</a>
+                <a href="./design.html" class="btn-footer">Design</a>
+                <a href="./exhibitions.html" class="btn-footer">Exhibitions</a>
+                <a href="./workshop.html" class="btn-footer">Workshop</a>
+            </div>
+        </div>
+        <p>&copy; 2024 Robotics Space. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = `${fontSize}px monospace`;
+
+            drops.forEach((y, i) => {
+                const text = matrix.charAt(Math.floor(Math.random() * matrix.length));
+                const x = i * fontSize;
+
+                ctx.fillText(text, x, y * fontSize);
+
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            });
+        }
+
+        setInterval(draw, 50);
+    </script>
+
+</body>
+
+</html>
